@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "AMO0KXDGwufiWJrELD05Dxh49qWEQGl17EYQ4GaYBL/vP/Q31gxYbQsmwKMrT/7UGKcfzuDN4xivG+QJDlmenQ==",
+  "success": true,
+  "projectFilePath": "D:\\work\\web\\Apartments Project\\ClientMVCApartments\\ClientMVCApartments\\ClientMVCApartments.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
