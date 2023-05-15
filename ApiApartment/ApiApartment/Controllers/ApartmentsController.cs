@@ -1,6 +1,12 @@
 ﻿using ApiApartment.Context;
 using ApiApartment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace ApiApartment.Controllers
 {
@@ -13,6 +19,7 @@ namespace ApiApartment.Controllers
         public ApartmentsController(ApplicationDbContext context)
         {
             _context = context;
+
         }
 
         [HttpGet("search")]

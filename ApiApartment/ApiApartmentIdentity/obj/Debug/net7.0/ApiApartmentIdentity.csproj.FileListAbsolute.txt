@@ -83,3 +83,4 @@ D:\work\web\Apartments Project\ApiApartment\ApiApartmentIdentity\obj\Debug\net7.
 D:\work\web\Apartments Project\ApiApartment\ApiApartmentIdentity\bin\Debug\net7.0\ApiApartmentIdentity.staticwebassets.runtime.json
 D:\work\web\Apartments Project\ApiApartment\ApiApartmentIdentity\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
 D:\work\web\Apartments Project\ApiApartment\ApiApartmentIdentity\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\work\web\Apartments Project\ApiApartment\ApiApartmentIdentity\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -6,7 +6,7 @@ namespace ClientMVCApartments.Controllers
     public class ApartmentsController : Controller
     {
 
-        Uri baseAdress = new Uri("https://localhost:7298/");
+        Uri baseAdress = new Uri("https://localhost:7298/");          //апи квартир
         private readonly HttpClient _httpClient;
         /*private readonly string _baseUrl;*/
 
