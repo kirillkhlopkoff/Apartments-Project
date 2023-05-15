@@ -49,8 +49,15 @@
                                 Account
                             </button>
                             <div class="dropdown-menu" aria-labelledby="account-btn">
-                                <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Log In</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Log In</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                }
                             </div>
                         </div>
                     </ul>
