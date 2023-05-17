@@ -32,12 +32,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcnRtZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Apartments/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcnRtZW50c1xEZWxldGUuY3NodG1s
+[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Apartments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcnRtZW50c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Apartments/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcnRtZW50c1xMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Apartments/UnActivate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcnRtZW50c1xVbkFjdGl2YXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Home/Index.cshtml]

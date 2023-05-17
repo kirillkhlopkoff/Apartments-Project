@@ -60,3 +60,6 @@ D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\obj\Debug
 D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\obj\Debug\net7.0\ClientMVCApartments.pdb
 D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\obj\Debug\net7.0\ClientMVCApartments.genruntimeconfig.cache
 D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\obj\Debug\net7.0\ref\ClientMVCApartments.dll
+D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments\obj\Debug\net7.0\ClientMVCApartments.csproj.CopyComplete

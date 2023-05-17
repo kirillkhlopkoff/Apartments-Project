@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClientMVCApartments.Models.Account
+namespace ClientMVCApartments.ViewModels.Account
 {
     public class UserRegistration
     {

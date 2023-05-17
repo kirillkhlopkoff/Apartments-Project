@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kTQb91iHdqZEGUaW7e7a5bZ3+PgIMAK2hE85cVM6bIO7ltTnexu98eKzE40dR0QnTIG9ywuL7WDkzt0V3vwdug==",
+  "dgSpecHash": "oEmNdp8nBGTMg9CEh9s+2tbKtYnb181r4FXESZmg8Yfn5SWCimmGK6dUTdN3yHq82IJ9u6VrEJ4OvhmrV4a8vA==",
   "success": true,
   "projectFilePath": "D:\\work\\web\\Apartments Project\\ApiApartment\\ApiApartment\\ApiApartment.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.5\\microsoft.aspnetcore.cryptography.keyderivation.7.0.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.5\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\7.0.5\\microsoft.aspnetcore.identity.ui.7.0.5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.5\\microsoft.aspnetcore.jsonpatch.7.0.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.11\\microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

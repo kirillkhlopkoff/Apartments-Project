@@ -2,7 +2,7 @@ using ApiApartment.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using Microsoft.AspNetCore.Identity;
-
+using ApiApartmentIdentity.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +23,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
 app.UseRouting();
 
-app.MapControllers();
-/*app.MapRazorPages();*/
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();

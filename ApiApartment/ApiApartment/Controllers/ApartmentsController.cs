@@ -1,6 +1,8 @@
 ﻿using ApiApartment.Context;
 using ApiApartment.Models;
+using ApiApartmentIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -19,7 +21,6 @@ namespace ApiApartment.Controllers
         public ApartmentsController(ApplicationDbContext context)
         {
             _context = context;
-
         }
 
         [HttpGet("search")]
@@ -65,6 +66,9 @@ namespace ApiApartment.Controllers
         [HttpPost]
         public async Task<ActionResult<Apartment>> CreateApartment(Apartment apartment)
         {
+            /*apartment.Owner = HttpContext.User.Identity.Name;
+            apartment.UserId = HttpContext.User.Identity.Id;*/
+            /*apartment.Owner = User.Identity.Name; // Заполняем поле "имя пользователя" значением текущего пользователя*/
             _context.Apartments.Add(apartment);
             await _context.SaveChangesAsync();
 
@@ -82,6 +86,22 @@ namespace ApiApartment.Controllers
             }
 
             _context.Apartments.Remove(apartment);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UnactivateApartment(int id)
+        {
+            var apartment = await _context.Apartments.FindAsync(id);
+
+            if (apartment == null)
+            {
+                return NotFound();
+            }
+
+            apartment.Status = "Inactive";
             await _context.SaveChangesAsync();
 
             return NoContent();

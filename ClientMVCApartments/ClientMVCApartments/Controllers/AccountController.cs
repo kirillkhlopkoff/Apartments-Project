@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
-using ClientMVCApartments.Models.Account;
+using ClientMVCApartments.ViewModels.Account;
 using ClientMVCApartments.Models;
 using System.Reflection;
 
@@ -57,7 +57,7 @@ namespace ClientMVCApartments.Controllers
             var response = await _httpClient.PostAsJsonAsync($"{baseAdress}api/auth/login", model);
             if (response.IsSuccessStatusCode)
             {
-                var tokenModel = await response.Content.ReadFromJsonAsync<MyAccountModel>();
+                var tokenModel = await response.Content.ReadFromJsonAsync<User>();
 
                 // Проверка на null перед созданием утверждения
                 if (model.UserName != null && tokenModel.Token != null)
@@ -65,15 +65,14 @@ namespace ClientMVCApartments.Controllers
                     // Создание и сохранение аутентификационных куки
                     var claims = new[]
                     {
-                new Claim(ClaimTypes.Name, model.UserName),
-                new Claim("MyAccountModel", tokenModel.Token)
-            };
+                        new Claim(ClaimTypes.Name, model.UserName),
+                        new Claim("User", tokenModel.Token)
+                    };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(identity);
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
                     return RedirectToAction("MyAccount", "Account");
                 }
             }
@@ -86,42 +85,6 @@ namespace ClientMVCApartments.Controllers
             return View(model);
         }
 
-        /* [HttpPost]
-         public async Task<IActionResult> Login(UserLogin model)
-         {
-             var response = await _httpClient.PostAsJsonAsync($"{baseAdress}api/auth/login", model);
-             if (response.IsSuccessStatusCode)
-             {
-                 *//*var tokenResponse = await response.Content.ReadAsStringAsync();
-                 var token = JsonSerializer.Deserialize<string>(tokenResponse);*//*
-                 var tokenResponse = await response.Content.ReadAsStringAsync();
-                 var tokenModel = JsonSerializer.Deserialize<AccessTokenModel>(tokenResponse);
-                 var token = tokenModel.Token;
-
-                 // Создание и сохранение аутентификационных куки
-                 var claims = new[]
-                 {
-                     new Claim(ClaimTypes.Name, model.UserName),
-                     new Claim("AccessToken", token)
-                 };
-
-                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                 var principal = new ClaimsPrincipal(identity);
-
-                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-                 return RedirectToAction("MyAccount", "Account");
-
-                 *//*return RedirectToAction("List", "Apartments");*//*
-             }
-             else
-             {
-                 // Обработка ошибки входа
-                 ModelState.AddModelError("", "Неправильное имя пользователя или пароль.");
-                 return View(model);
-             }
-         }*/
-
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
@@ -133,7 +96,7 @@ namespace ClientMVCApartments.Controllers
         {
             var userName = User.Identity.Name;
             var token = HttpContext.Request.Cookies["AccessToken"]; // это нужно только в тех случаях, где нужен токен, а пока это не используется // получение значения токена из аутентификационных куки или другого источника
-            var model = new MyAccountModel { Token = token, UserName = userName };
+            var model = new User { Token = token, UserName = userName };
             ViewData["UserName"] = userName;
             return View(model);
         }
