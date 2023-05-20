@@ -3,23 +3,24 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
-using ClientMVCApartments.ViewModels.Account;
+using ClientMVCApartments.ViewModels.Auth;
 using ClientMVCApartments.Models;
 using System.Reflection;
 
 namespace ClientMVCApartments.Controllers
 {
-    public class AccountController : Controller
+    public class AuthController : Controller
     {
+        private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
-        Uri baseAdress = new Uri("https://localhost:7295");        //апи идентификации
-        /*private readonly string _apiBaseUrl;*/
 
-        public AccountController(HttpClient httpClient, IConfiguration configuration)
+        public AuthController(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = baseAdress;
-            /*_apiBaseUrl = configuration.GetValue<string>("ApiBaseUrl");*/
+            _configuration = configuration;
+
+            var baseUrl = _configuration.GetConnectionString("AccountApiBaseUrl");
+            _httpClient.BaseAddress = new Uri(baseUrl);
         }
 
         [HttpGet]
@@ -31,7 +32,7 @@ namespace ClientMVCApartments.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegistration model)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{baseAdress}api/auth/register", model);
+            var response = await _httpClient.PostAsJsonAsync($"api/auth/register", model);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Login");
@@ -54,7 +55,7 @@ namespace ClientMVCApartments.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLogin model)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{baseAdress}api/auth/login", model);
+            var response = await _httpClient.PostAsJsonAsync($"api/auth/login", model);
             if (response.IsSuccessStatusCode)
             {
                 var tokenModel = await response.Content.ReadFromJsonAsync<User>();
@@ -92,13 +93,13 @@ namespace ClientMVCApartments.Controllers
             return RedirectToAction("List", "Apartments");
         }
 
-        public IActionResult MyAccount()
+        /*public IActionResult MyAccount()
         {
             var userName = User.Identity.Name;
             var token = HttpContext.Request.Cookies["AccessToken"]; // это нужно только в тех случаях, где нужен токен, а пока это не используется // получение значения токена из аутентификационных куки или другого источника
             var model = new User { Token = token, UserName = userName };
             ViewData["UserName"] = userName;
             return View(model);
-        }
+        }*/
     }
 }

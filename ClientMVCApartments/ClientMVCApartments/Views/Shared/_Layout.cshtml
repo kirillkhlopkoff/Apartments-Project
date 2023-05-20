@@ -51,12 +51,13 @@
                             <div class="dropdown-menu" aria-labelledby="account-btn">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log Out</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="Logout">Log Out</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="MyAccount">My Account</a>
                                 }
                                 else
                                 {
-                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Log In</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="Login">Log In</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
                                 }
                             </div>
                         </div>

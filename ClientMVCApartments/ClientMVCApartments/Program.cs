@@ -1,4 +1,5 @@
 using ClientMVCApartments.Controllers;
+using ClientMVCApartments.Controllers.Account;
 using ClientMVCApartments.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
@@ -15,16 +16,21 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: true);
 builder.Services.AddControllersWithViews();
 
 // Register the HttpClient with the API base URL
-/*builder.Services.AddHttpClient("api", client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("ApiBaseUrl"));
-});*/
 builder.Services.AddHttpClient<ApartmentsController>()
     .ConfigureHttpClient((services, client) =>
     {
         var configuration = services.GetRequiredService<IConfiguration>();
         var baseUrl = configuration.GetConnectionString("ApiBaseUrl");
         client.BaseAddress = new Uri(baseUrl);
+    });
+
+// Регистрация HttpClient для контроллера аккаунта
+builder.Services.AddHttpClient<AccountController>()
+    .ConfigureHttpClient((services, client) =>
+    {
+        var configuration = services.GetRequiredService<IConfiguration>();
+        var accountApiBaseUrl = configuration.GetConnectionString("AccountApiBaseUrl");
+        client.BaseAddress = new Uri(accountApiBaseUrl);
     });
 
 /*// Регистрация User и Role Manager

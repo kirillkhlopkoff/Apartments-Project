@@ -16,16 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Account/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Account/MyAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNeUFjY291bnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Account/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Apartments/Create.cshtml]
@@ -42,6 +34,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Apartments/UnActivate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBhcnRtZW50c1xVbkFjdGl2YXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Home/Index.cshtml]

@@ -5,4 +5,34 @@
 }
 
 <h1>My Account</h1>
-<p>Welcome, <strong>@Model.UserName</strong>!</p>
+<p>Welcome, <strong>@ViewData["UserName"]</strong>!</p>
+
+<h2>Update First Name:</h2>
+<form method="post" asp-action="UpdateFirstName">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="FirstName" value="@Model.FirstName" />
+    </div>
+    <button type="submit">Update</button>
+</form>
+
+<h2>Update Last Name:</h2>
+<form method="post" asp-action="UpdateLastName">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="LastName" value="@Model.LastName" />
+    </div>
+    <button type="submit">Update</button>
+</form>
+
+<h2>Update City:</h2>
+<form method="post" asp-action="UpdateCity">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="City" value="@Model.City" />
+    </div>
+    <button type="submit">Update</button>
+</form>

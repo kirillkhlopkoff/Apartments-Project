@@ -75,7 +75,7 @@ namespace ApiApartment.Controllers
             return CreatedAtAction(nameof(GetApartment), new { id = apartment.Id }, apartment);
         }
 
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public async Task<IActionResult> DeleteApartment(int id)
         {
             var apartment = await _context.Apartments.FindAsync(id);
@@ -89,12 +89,12 @@ namespace ApiApartment.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
+        }*/
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UnactivateApartment(int id)
+        public async Task<IActionResult> UnactivateApartment(int id, Apartment apartment)
         {
-            var apartment = await _context.Apartments.FindAsync(id);
+            apartment = await _context.Apartments.FindAsync(id);
 
             if (apartment == null)
             {

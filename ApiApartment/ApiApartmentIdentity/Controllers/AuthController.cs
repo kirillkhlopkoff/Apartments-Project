@@ -29,7 +29,15 @@ namespace ApiApartmentIdentity.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegistration model)
         {
-            var user = new User { UserName = model.UserName, Email = model.Email };
+            var user = new User 
+            { 
+                UserName = model.UserName, 
+                Email = model.Email, 
+                FirstName = model.FirstName, 
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                City = model.City
+            };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {

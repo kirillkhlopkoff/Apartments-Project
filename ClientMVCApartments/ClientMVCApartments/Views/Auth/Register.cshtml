@@ -1,0 +1,49 @@
+﻿@using ClientMVCApartments.ViewModels.Auth;
+@model UserRegistration
+
+<h1>Регистрация</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="UserName">Логин:</label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FirstName">Имя:</label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="LastName">Фамилия:</label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="City">Город:</label>
+        <input asp-for="City" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="PhoneNumber">Номер телефона:</label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password">Пароль:</label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div>
+        <button type="submit">Зарегистрироваться</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

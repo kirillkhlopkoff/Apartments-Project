@@ -1,7 +1,7 @@
-﻿@using ClientMVCApartments.ViewModels.Account;
-@model UserRegistration
+﻿@using ClientMVCApartments.ViewModels.Auth;
+@model UserLogin
 
-<h1>Регистрация</h1>
+<h1>Вход в систему</h1>
 
 <form method="post">
     <div>
@@ -9,14 +9,10 @@
         <input asp-for="UserName" />
     </div>
     <div>
-        <label asp-for="Email">Email:</label>
-        <input asp-for="Email" />
-    </div>
-    <div>
         <label asp-for="Password">Пароль:</label>
         <input asp-for="Password" type="password" />
     </div>
     <div>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Войти</button>
     </div>
 </form>

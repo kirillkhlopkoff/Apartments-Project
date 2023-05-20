@@ -66,6 +66,10 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@apartment.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@apartment.Id">Details</a> |
+                    <form method="post" action="@Url.Action("Delete", "Delete", new { id = apartment.Id })">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit">Delete</button>
+                    </form>
                     <a asp-controller="Apartments" asp-action="UnActivate" asp-route-id="@apartment.Id">UnActivate</a>
                 </td>
             </tr>

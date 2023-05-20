@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClientMVCApartments.ViewModels.Account
+namespace ClientMVCApartments.ViewModels.Auth
 {
     public class UserLogin
     {

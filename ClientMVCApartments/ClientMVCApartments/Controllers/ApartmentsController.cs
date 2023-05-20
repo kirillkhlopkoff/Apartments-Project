@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
@@ -57,9 +58,10 @@ namespace ClientMVCApartments.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UnActivate(int id)
+        public async Task<IActionResult> UnActivate(int id, Apartment apartment)
         {
-            var response = await _httpClient.PostAsync($"api/apartments/inactive/{id}", null);
+            apartment.Status = "Inactive";
+            var response = await _httpClient.PutAsync($"api/apartments/inactive/{id}", null);
 
             if (response.IsSuccessStatusCode)
             {
@@ -73,6 +75,29 @@ namespace ClientMVCApartments.Controllers
                 return RedirectToAction(nameof(List));
             }
         }
+
+        /*[HttpPut("{id}")]
+        public async Task<IActionResult> UnActivate(int id)
+        {
+            var url = $"api/apartments/{id}";
+            var apartment = new { Status = "Inactive" };
+            var response = await _httpClient.PutAsJsonAsync(url, apartment);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return NoContent();
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error: {errorContent}");
+                return StatusCode((int)response.StatusCode);
+            }
+        }*/
 
         /*[HttpPost]
         public async Task<IActionResult> Delete(int id)
