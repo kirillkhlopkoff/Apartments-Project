@@ -67,7 +67,7 @@ namespace ClientMVCApartments.Controllers
                     var claims = new[]
                     {
                         new Claim(ClaimTypes.Name, model.UserName),
-                        new Claim("User", tokenModel.Token)
+                        new Claim("MyCookieName", tokenModel.Token)
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

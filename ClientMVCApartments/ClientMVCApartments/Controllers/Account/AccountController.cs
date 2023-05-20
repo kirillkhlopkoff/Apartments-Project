@@ -1,7 +1,10 @@
-﻿using ClientMVCApartments.Models;
+﻿using ClientMVCApartments.Helpers;
+using ClientMVCApartments.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace ClientMVCApartments.Controllers.Account
 {
@@ -9,11 +12,13 @@ namespace ClientMVCApartments.Controllers.Account
     {
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
+        private readonly UserHelper _userHelper;
 
-        public AccountController(HttpClient httpClient, IConfiguration configuration)
+        public AccountController(HttpClient httpClient, IConfiguration configuration, UserHelper userHelper)
         {
             _httpClient = httpClient;
             _configuration = configuration;
+            _userHelper = userHelper;
 
             var baseUrl = _configuration.GetConnectionString("AccountApiBaseUrl");
             _httpClient.BaseAddress = new Uri(baseUrl);
@@ -22,59 +27,69 @@ namespace ClientMVCApartments.Controllers.Account
         public IActionResult MyAccount()
         {
             var userName = User.Identity.Name;
-            var token = HttpContext.Request.Cookies["AccessToken"];
+            var token = HttpContext.Request.Cookies["MyCookieName"];
             if (userName != null)
             {
-                var model = new User { Token = token, UserName = userName };
-                ViewData["UserName"] = userName;
-                return View(model);
+                var user = _userHelper.GetUser(userName);
+                if (user != null)
+                {
+                    user.Token = token;
+                    ViewData["UserName"] = userName;
+                    return View(user);
+                }
             }
-            else
+
+            return RedirectToAction("Login", "Auth");
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            var userName = User.Identity.Name;
+            var user = _userHelper.GetUser(userName);
+
+            if (user == null)
             {
-                return RedirectToAction("Login", "Account");
+                // Обработайте ситуацию, если текущий пользователь не найден
+                return RedirectToAction("Login", "Auth");
             }
+
+            return View(user);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFirstName(User user)
+        public IActionResult Update(User model)
         {
-            var response = await _httpClient.PutAsJsonAsync("api/Account/FirstName", user);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("MyAccount");
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
+            var userName = User.Identity.Name;
+            var user = _userHelper.GetUser(userName);
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateLastName(User user)
-        {
-            var response = await _httpClient.PutAsJsonAsync("api/Account/LastName", user);
-            if (response.IsSuccessStatusCode)
+            if (user == null)
             {
-                return RedirectToAction("MyAccount");
+                // Обработайте ситуацию, если текущий пользователь не найден
+                return RedirectToAction("Login", "Auth");
             }
-            else
-            {
-                return View("Error");
-            }
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateCity(User user)
-        {
-            var response = await _httpClient.PutAsJsonAsync("api/Account/City", user);
-            if (response.IsSuccessStatusCode)
+            // Проверьте, заполнено ли поле FirstName и обновите информацию пользователя, если заполнено
+            if (!string.IsNullOrEmpty(model.FirstName))
             {
-                return RedirectToAction("MyAccount");
+                user.FirstName = model.FirstName;
             }
-            else
+            if (!string.IsNullOrEmpty(model.LastName))
             {
-                return View("Error");
+                user.LastName = model.LastName;
             }
+            if (!string.IsNullOrEmpty(model.City))
+            {
+                user.City = model.City;
+            }
+
+            // Обновите информацию пользователя в источнике данных (например, в куки или другом месте)
+
+            // В данном примере предполагается, что данные пользователя хранятся в JSON формате в куке с именем "UserData"
+            var userDataJson = JsonSerializer.Serialize(user);
+            HttpContext.Response.Cookies.Append("UserData", userDataJson);
+
+            return RedirectToAction("MyAccount");
         }
     }
 }

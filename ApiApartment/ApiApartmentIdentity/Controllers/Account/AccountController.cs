@@ -1,7 +1,9 @@
-﻿using ApiApartmentIdentity.Models;
+﻿using ApiApartmentIdentity.Context;
+using ApiApartmentIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace ApiApartmentIdentity.Controllers.Account
@@ -14,15 +16,18 @@ namespace ApiApartmentIdentity.Controllers.Account
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;     //совет от gpt
+        private readonly UsersDbContext _context;
 
         public AccountController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IConfiguration configuration)           //совет от gpt
+            IConfiguration configuration,
+            UsersDbContext context)           //совет от gpt
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;        //совет от gpt
+            _context = context;
         }
 
         [HttpGet]
@@ -35,52 +40,34 @@ namespace ApiApartmentIdentity.Controllers.Account
             return Ok(user);
         }
 
-        [HttpPut("FirstName")]
-        public async Task<IActionResult> UpdateFirstName([FromBody] User updatedUser)
+        [HttpPut("api/Account/UpdateUser")]
+        public async Task<IActionResult> UpdateUser(User user)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await _userManager.FindByIdAsync(userId);
-            user.FirstName = updatedUser.FirstName;
-
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            try
             {
-                return BadRequest(result.Errors);
+                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName);
+                if (existingUser != null)
+                {
+                    existingUser.FirstName = user.FirstName;
+                    existingUser.LastName = user.LastName;
+                    existingUser.City = user.City;
+                    // Обновите другие поля пользователя по аналогии
+
+                    await _context.SaveChangesAsync();
+
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound(); // Обработайте ситуацию, если пользователя не найдено
+                }
+
+                // В случае использования другого хранилища данных или сервиса, обновите код в соответствии с вашей реализацией.
             }
-
-            return Ok();
-        }
-
-        [HttpPut("LastName")]
-        public async Task<IActionResult> UpdateLastName([FromBody] User updatedUser)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await _userManager.FindByIdAsync(userId);
-            user.LastName = updatedUser.LastName;
-
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            catch (Exception ex)
             {
-                return BadRequest(result.Errors);
+                return StatusCode(500, ex.Message); // Обработайте ошибку сервера
             }
-
-            return Ok();
-        }
-
-        [HttpPut("City")]
-        public async Task<IActionResult> UpdateCity([FromBody] User updatedUser)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await _userManager.FindByIdAsync(userId);
-            user.City = updatedUser.City;
-
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            return Ok();
         }
     }
 }

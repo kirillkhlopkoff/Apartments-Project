@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\work\web\Apartments Project\ClientMVCApartments\ClientMVCApartments
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Account/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/work/web/Apartments Project/ClientMVCApartments/ClientMVCApartments/Views/Account/MyAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNeUFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

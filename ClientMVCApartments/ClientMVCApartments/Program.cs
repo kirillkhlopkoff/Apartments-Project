@@ -1,5 +1,6 @@
 using ClientMVCApartments.Controllers;
 using ClientMVCApartments.Controllers.Account;
+using ClientMVCApartments.Helpers;
 using ClientMVCApartments.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
@@ -46,12 +47,15 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    options.Cookie.Name = "YourCookieName";
+    options.Cookie.Name = "MyCookieName";
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-    options.LoginPath = "/Account/Login";
+    options.LoginPath = "/Auth/Login";
 });
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserHelper>();
 
 var app = builder.Build();
 
